@@ -7,7 +7,11 @@ let listapaises = document.querySelector('#listapaises');
 const agregarPaisAlCarro = (paisesSeleccionados) => {
     listapaises.innerHTML = ``;
     paisesSeleccionados.forEach((element, index) => {
-        const {_id,pais,bandera} = element
+        const {
+            _id,
+            pais,
+            bandera
+        } = element
         listapaises.innerHTML += `<tr>
 <td><img class="imgminiatura" src="${element.bandera}" alt="${element.pais}"></td>
 <td class="text-center">${element.pais}</td>
@@ -18,7 +22,7 @@ const agregarPaisAlCarro = (paisesSeleccionados) => {
     });
 
     let buttonDelete = document.querySelectorAll('#listapaises tr td a');
-    let buttonDeleteAll = document.querySelector ('#vaciarAlbum');
+    let buttonDeleteAll = document.querySelector('#vaciarAlbum');
     buttonDelete.forEach(element => {
         element.addEventListener('click', (e) => {
             e.preventDefault();
@@ -27,14 +31,30 @@ const agregarPaisAlCarro = (paisesSeleccionados) => {
 
             let obtenerDesdeElStorage = JSON.parse(localStorage.getItem("paises")) || [];
             agregarPaisAlCarro(paisesSeleccionados)
-            siEstanEnStorage( id , obtenerDesdeElStorage, 'removeClass' )
+            siEstanEnStorage(id, obtenerDesdeElStorage, 'removeClass')
         });
     });
 
-    buttonDeleteAll.addEventListener ('click', (e)=>{
+    buttonDeleteAll.addEventListener('click', (e) => {
         e.preventDefault();
-        localStorage.clear();
-        location.reload();
+        Swal.fire({
+            icon: 'warning',
+            title: '¿Estás seguro de vaciar el álbum?',
+            showCancelButton: true,
+            confirmButtonText: 'vaciar',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Vacío!',
+                    text: 'Tu álbum está vacío.',
+                    icon: 'success'
+                })
+                localStorage.clear();
+                location.reload();
+            }
+        })
+
     })
 
     sincronizarConLocalStorage(paisesSeleccionados);
