@@ -7,11 +7,7 @@ let listapaises = document.querySelector('#listapaises');
 const agregarPaisAlCarro = (paisesSeleccionados) => {
     listapaises.innerHTML = ``;
     paisesSeleccionados.forEach((element, index) => {
-        const {
-            _id,
-            pais,
-            bandera
-        } = element
+        const {_id,pais,bandera} = element
         listapaises.innerHTML += `<tr>
 <td><img class="imgminiatura" src="${element.bandera}" alt="${element.pais}"></td>
 <td class="text-center">${element.pais}</td>

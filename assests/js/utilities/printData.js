@@ -3,6 +3,7 @@ import myJson from '../paises.json'assert {type: 'json'};
 import siEstanEnStorage from './siEstanEnStorage.js';
 
 
+
 let insertDOMcontent = document.querySelector('#insertDOMcontent');
 let listapaises = document.querySelector('#listapaises');
 
