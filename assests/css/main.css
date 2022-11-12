@@ -13,15 +13,16 @@ body {
     top: 10px;
 }
 
-.submenu #album{
+.submenu #album {
     display: none;
 }
-.submenu:hover #album{
+
+.submenu:hover #album {
     display: block;
     /*  */
     position: absolute;
-    right:0;
-    top:100%;
+    right: 0;
+    top: 100%;
     z-index: 1;
     background-color: white;
     padding: 20px;
@@ -41,6 +42,11 @@ body {
     border-style: solid;
     border-width: 1px;
     border-radius: 4px;
+}
+
+.list-group-horizontal {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .imgminiatura {
