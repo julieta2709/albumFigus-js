@@ -1,7 +1,7 @@
 const validaForm = (e) => {
     e.preventDefault();
     const pais = document.querySelector('#pais').value;
-    console.log(pais)
+   
     var countChecked = function () {
         
         var n = $("input:checked").length;
