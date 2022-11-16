@@ -4,6 +4,7 @@ import validaForm from "./utilities/validaForm.js";
 const formulario = document.querySelector('#formulario');
 const paisesalbum = document.querySelector('#paisesalbum');
 
+/* Impresión en DOM de los datos seleccionados en el formulario */
 const mostrarDatos = (figuritas, pais) => {
 
     paisesalbum.innerHTML += `<tr>
@@ -20,7 +21,19 @@ const mostrarDatos = (figuritas, pais) => {
 
 }
 
+const consultaJson = async (_id, pais, bandera) => {
+    fetch("./paises.json")
+        .then(respuesta => {
+            return respuesta.json();
+        })
+        .then(data => {
+            console.log(data);
+            limpiarHTML();
+        });
+    
+};
 
+/* Captura de los datos ingresados en formulario */
 const cargarForm = (e) => {
 
     e.preventDefault();
