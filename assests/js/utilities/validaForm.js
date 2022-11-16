@@ -1,3 +1,4 @@
+/* Validación de formulario */
 const validaForm = (e) => {
     e.preventDefault();
     const pais = document.querySelector('#pais').value;
