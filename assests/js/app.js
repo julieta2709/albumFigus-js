@@ -1,14 +1,15 @@
 import validaForm from "./utilities/validaForm.js";
 
-
 const formulario = document.querySelector('#formulario');
 const paisesalbum = document.querySelector('#paisesalbum');
+const contentTotal = document.querySelector('#contentTotal');
+const restanFiguritas = document.querySelector('#restanFiguritas');
 
 /* Impresión en DOM de los datos seleccionados en el formulario */
 const mostrarDatos = (figuritas, pais) => {
 
-    paisesalbum.innerHTML += `<tr>
-    <td><img class="imgFitMiniatura" src="" alt="">Imagen</td>
+  paisesalbum.innerHTML += `
+    <td><img class="imgFitMiniatura" src="" alt=""></td>
     <td class="text-center">${figuritas}</td>    
     <td>${pais}</td>
     <td class="text-center"><a href="#" title="" class="borrar-curso" data-id="1">
@@ -21,29 +22,32 @@ const mostrarDatos = (figuritas, pais) => {
 
 }
 
-const consultaJson = async (_id, pais, bandera) => {
-    fetch("./paises.json")
-        .then(respuesta => {
-            return respuesta.json();
-        })
-        .then(data => {
-            console.log(data);
-            limpiarHTML();
-        });
-    
+
+function consultaJson() {
+  fetch('assests/js/db/paises.json')
+    .then(resp => resp.json())
+    .then(paises => {
+      const pais = document.querySelector('#pais').value
+     if(paises[pais]){
+console.lof(paises)
+     }
+      
+
+    })
 };
+consultaJson();
 
 /* Captura de los datos ingresados en formulario */
 const cargarForm = (e) => {
 
-    e.preventDefault();
+  e.preventDefault();
 
-    const pais = document.querySelector('#pais').value
-    const figuritas = document.querySelector('.form-check-input:checked').value
-    mostrarDatos(pais, figuritas);
+  const pais = document.querySelector('#pais').value
+  const figuritas = document.querySelector('.form-check-input:checked').value
+  mostrarDatos(pais, figuritas);
 
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    formulario.addEventListener('submit', cargarForm);
+  formulario.addEventListener('submit', cargarForm);
 })
